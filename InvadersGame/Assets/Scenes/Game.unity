@@ -394,6 +394,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
+  bulletSpeed: 10
+  bulletPrefab: {fileID: 1182674913519058, guid: e816779dea6aa364588c979e37895d03,
+    type: 2}
+  shootDelayInSeconds: 1
 --- !u!54 &1141807998
 Rigidbody:
   m_ObjectHideFlags: 0

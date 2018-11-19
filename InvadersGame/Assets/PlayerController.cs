@@ -11,6 +11,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private float shootDelayInSeconds;
+    private float timeForNextShotAvaiable;
+
     private Rigidbody rb;
     /*
      * Los Rigidbodies le permite a sus GameObjects actuar bajo el control de la física. 
@@ -27,6 +32,8 @@ public class PlayerController : MonoBehaviour {
          * Como nuestro código utiliza [RequireComponent(typeof(Rigidbody))] nunca recibiremos null, no es necesario
          * checkear si fue null en el resto del código.
          */
+
+        timeForNextShotAvaiable = 0f;
     }
 
 
@@ -54,6 +61,34 @@ public class PlayerController : MonoBehaviour {
 
         }
 
+        bool fireButtonPressed = Input.GetKeyDown(KeyCode.Space);
+        /*
+         * Input.GetKeyDown devuelve true si la tecla fue presionada en ese frame, en este demo queremos
+         * queremos que la nave dispare si se apreta la barra espaciadora.
+         */
+
+        if (timeForNextShotAvaiable <= 0 && fireButtonPressed)
+        {
+            timeForNextShotAvaiable = shootDelayInSeconds;
+            /*
+             * Como vamos a disparar reseteamos el tiempo para poder volver a disparar
+             */
+
+            Debug.Log("PEW!");
+
+            var bullet = Instantiate(bulletPrefab, this.transform.position + Vector3.forward * 1, Quaternion.identity);
+            bullet.GetComponent<Rigidbody>().velocity = Vector3.forward * bulletSpeed;
+
+        }
+        else
+        {
+            timeForNextShotAvaiable -= Time.deltaTime;
+            /*
+            * Time.deltaTime devuelve en tiempo aproximado que paso desde el ultimo frame, es una forma 
+            * no tan costosa de llevar cuenta del tiempo.
+            * Cuando timeForNextShotAvaiable es menor a 0 quiere decir que podemos volver a disparar.
+            */
+        }
     }
 
 }
