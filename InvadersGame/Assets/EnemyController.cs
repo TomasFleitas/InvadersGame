@@ -16,11 +16,15 @@ public class EnemyController : MonoBehaviour {
      */
     [SerializeField] private float bulletSpeed;
     [SerializeField] private GameObject bulletPrefab;
+    private MeshFilter myMeshFilter;
+    private bool dead;
+
 
     // Use this for initialization
     void Start () {
         timeForNextShotAvaiable = 0f;
         shootOrderReceived = false;
+        myMeshFilter = GetComponent<MeshFilter>();
     }
 
     // Update is called once per frame
@@ -56,5 +60,21 @@ public class EnemyController : MonoBehaviour {
     {
         shootOrderReceived = true;
         
+    }
+
+    public void ChangeMesh(Mesh newMesh)
+    {
+        myMeshFilter.mesh = newMesh;
+    }
+
+    public bool IsAlive()
+    {
+        return !dead;
+    }
+
+    public void Die()
+    {
+        this.gameObject.SetActive(false);
+        dead = true;
     }
 }
