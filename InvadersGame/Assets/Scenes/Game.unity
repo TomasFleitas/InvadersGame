@@ -700,6 +700,10 @@ MonoBehaviour:
   movingProb: 0.7
   movingHorizontalProb: 0.7
   columnShootProb: 0.3
+  enemyMeshes:
+  - {fileID: 4300000, guid: 5a8cfa9b980f3c24cb415e242a7dd774, type: 3}
+  - {fileID: 4300002, guid: 5a8cfa9b980f3c24cb415e242a7dd774, type: 3}
+  currentMesh: 0
 --- !u!4 &1872478204
 Transform:
   m_ObjectHideFlags: 0

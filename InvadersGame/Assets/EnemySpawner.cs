@@ -30,6 +30,9 @@ public class EnemySpawner : MonoBehaviour {
     public float movingHorizontalProb; //Si no se mueve horizontal se mueve hacia abajo
     public float columnShootProb;
 
+
+    [SerializeField] private Mesh[] enemyMeshes;
+    [SerializeField] private int currentMesh;
     // Use this for initialization
     void Start () {
         enemies = new EnemyController[enemyRowWidth][];
@@ -65,7 +68,12 @@ public class EnemySpawner : MonoBehaviour {
         if (timeForNextTick < 0)
         {
             timeForNextTick = ticksInSeconds;
-            if(UnityEngine.Random.Range(0.0f, 1.0f) < doingSomethingProb)
+
+            currentMesh = (currentMesh + 1) % enemyMeshes.Length;
+
+            ChangeEnemyMeshes();
+
+            if (UnityEngine.Random.Range(0.0f, 1.0f) < doingSomethingProb)
             {
                 if (UnityEngine.Random.Range(0.0f, 1.0f) < movingProb)
                 {
@@ -102,6 +110,17 @@ public class EnemySpawner : MonoBehaviour {
             timeForNextTick -= Time.deltaTime;
         }
 
+    }
+
+    private void ChangeEnemyMeshes()
+    {
+        for (int i = 0; i < enemyRowWidth; i++)
+        {
+            for (int j = 0; j < enemyRowHeight; j++)
+            {
+                enemies[i][j].ChangeMesh(enemyMeshes[currentMesh]);
+            }
+        }
     }
 
     private void TryShooting()
