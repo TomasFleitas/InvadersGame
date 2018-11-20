@@ -689,14 +689,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1834037742756022, guid: f2515065ee6e64345b33f6f6824cd64b,
     type: 2}
-  enemyRowWidth: 5
-  enemyRowHeight: 2
+  enemyRowWidth: 7
+  enemyRowHeight: 4
   ticksInSeconds: 2
   maxVerticalOffset: 6
   maxHorizontalOffset: 6
   doingSomethingProb: 0.8
-  movingProb: 0.6
+  movingProb: 0.7
   movingHorizontalProb: 0.7
+  columnShootProb: 0.3
 --- !u!4 &1872478204
 Transform:
   m_ObjectHideFlags: 0

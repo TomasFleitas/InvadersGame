@@ -28,6 +28,7 @@ public class EnemySpawner : MonoBehaviour {
     public float doingSomethingProb; //Si va a aprovechar el tick para hacer algo
     public float movingProb; //Si no se mueve entonces dispara
     public float movingHorizontalProb; //Si no se mueve horizontal se mueve hacia abajo
+    public float columnShootProb;
 
     // Use this for initialization
     void Start () {
@@ -105,7 +106,25 @@ public class EnemySpawner : MonoBehaviour {
 
     private void TryShooting()
     {
-        Debug.Log("Todavía no estoy implementado pero imaginate que estoy DISPARANDO");
+        //Debug.Log("Todavía no estoy implementado pero imaginate que estoy DISPARANDO");
+        for(int i = 0; i < enemyRowWidth; i++)
+        {
+            var columna = enemies[i];
+
+            if (UnityEngine.Random.Range(0.0f, 1.0f) < columnShootProb)
+            {
+                for(int j = 0; j<enemyRowHeight; j++)
+                {
+                    if (columna[j].IsAlive())
+                    {
+                        columna[j].Shoot();
+                        break;
+                    }
+                }
+            }
+        }
+
+        
     }
 
     private void TryMovingDown()
