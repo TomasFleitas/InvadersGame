@@ -20,6 +20,14 @@ public class EnemySpawner : MonoBehaviour {
      * me permiten controlar a cada nave alienigena.
      */
 
+    [SerializeField] private float ticksInSeconds;
+    private float timeForNextTick;
+    [SerializeField] private int maxVerticalOffset;
+    [SerializeField] private int maxHorizontalOffset;
+    [Header("Probabilities")]
+    public float doingSomethingProb; //Si va a aprovechar el tick para hacer algo
+    public float movingProb; //Si no se mueve entonces dispara
+    public float movingHorizontalProb; //Si no se mueve horizontal se mueve hacia abajo
 
     // Use this for initialization
     void Start () {
@@ -53,10 +61,65 @@ public class EnemySpawner : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
-        
-	}
+        if (timeForNextTick < 0)
+        {
+            timeForNextTick = ticksInSeconds;
+            if(UnityEngine.Random.Range(0.0f, 1.0f) < doingSomethingProb)
+            {
+                if (UnityEngine.Random.Range(0.0f, 1.0f) < movingProb)
+                {
+                    //Va a tratar de moverse
+                    if (UnityEngine.Random.Range(0.0f, 1.0f) < movingHorizontalProb)
+                    {
+                        //Va a tratar de moverse horizontalmente
+                        if (UnityEngine.Random.Range(0.0f, 1.0f) < 0.5f)
+                        {
+                            //Va a tratar de moverse horizontalmente a la izquierda
+                            TryMovingLeft();
+                        }
+                        else
+                        {
+                            //Va a tratar de moverse horizontalmente a la derecha
+                            TryMovingRight();
+                        }
+                    }
+                    else
+                    {
+                        //Va a tratar de moverse hacia abajo
+                        TryMovingDown();
+                    }
+                }
+                else
+                {
+                    //Va a tratar de disparar
+                    TryShooting();
+                }
+            }
+        }
+        else
+        {
+            timeForNextTick -= Time.deltaTime;
+        }
 
-    
-    
+    }
+
+    private void TryShooting()
+    {
+        Debug.Log("Todavía no estoy implementado pero imaginate que estoy DISPARANDO");
+    }
+
+    private void TryMovingDown()
+    {
+        Debug.Log("Todavía no estoy implementado pero imaginate que estoy MOVIENDOME HACIA ABAJO"); 
+    }
+
+    private void TryMovingRight()
+    {
+        Debug.Log("Todavía no estoy implementado pero imaginate que estoy MOVIENDOME HACIA LA DERECHA");
+    }
+
+    private void TryMovingLeft()
+    {
+        Debug.Log("Todavía no estoy implementado pero imaginate que estoy MOVIENDOME HACIA LA IZQUIERDA");
+    }
 }

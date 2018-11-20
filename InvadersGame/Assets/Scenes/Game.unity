@@ -691,9 +691,12 @@ MonoBehaviour:
     type: 2}
   enemyRowWidth: 5
   enemyRowHeight: 2
-  ticksInSeconds: 0
-  movingProb: 0
-  movingHorizontalProb: 0
+  ticksInSeconds: 2
+  maxVerticalOffset: 6
+  maxHorizontalOffset: 6
+  doingSomethingProb: 0.8
+  movingProb: 0.6
+  movingHorizontalProb: 0.7
 --- !u!4 &1872478204
 Transform:
   m_ObjectHideFlags: 0
