@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour {
 
     [SerializeField] private float ticksInSeconds;
     private float timeForNextTick;
-    [SerializeField] private int maxVerticalOffset;
+    [SerializeField] private int minZValue;
     [SerializeField] private int maxHorizontalOffset;
     [Header("Probabilities")]
     public float doingSomethingProb; //Si va a aprovechar el tick para hacer algo
@@ -130,6 +130,10 @@ public class EnemySpawner : MonoBehaviour {
     private void TryMovingDown()
     {
         Debug.Log("Todavía no estoy implementado pero imaginate que estoy MOVIENDOME HACIA ABAJO"); 
+        if(this.transform.position.z > minZValue)
+        {
+            this.transform.position += Vector3.back;
+        }
     }
 
     private void TryMovingRight()
