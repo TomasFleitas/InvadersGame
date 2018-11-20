@@ -138,7 +138,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private void TryMovingRight()
     {
-        Debug.Log("Todavía no estoy implementado pero imaginate que estoy MOVIENDOME HACIA LA DERECHA");
+        //Debug.Log("Todavía no estoy implementado pero imaginate que estoy MOVIENDOME HACIA LA DERECHA");
         if(this.transform.position.x + (enemyRowWidth-1) /2f < maxHorizontalOffset)
         {
             this.transform.position += Vector3.right;
@@ -147,7 +147,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private void TryMovingLeft()
     {
-        Debug.Log("Todavía no estoy implementado pero imaginate que estoy MOVIENDOME HACIA LA IZQUIERDA");
+        //Debug.Log("Todavía no estoy implementado pero imaginate que estoy MOVIENDOME HACIA LA IZQUIERDA");
         if (this.transform.position.x - (enemyRowWidth - 1) / 2f > maxHorizontalOffset * (-1))
         {
             this.transform.position += Vector3.left;
