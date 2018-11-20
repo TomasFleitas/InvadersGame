@@ -393,6 +393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66007ceaf67449e49ad0317a668aafff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLives: 3
+  currentLives: 0
   moveSpeed: 6
   bulletSpeed: 10
   bulletPrefab: {fileID: 1182674913519058, guid: e816779dea6aa364588c979e37895d03,
@@ -692,7 +694,7 @@ MonoBehaviour:
   enemyRowWidth: 7
   enemyRowHeight: 4
   ticksInSeconds: 2
-  maxVerticalOffset: 6
+  minZValue: 0
   maxHorizontalOffset: 6
   doingSomethingProb: 0.8
   movingProb: 0.7

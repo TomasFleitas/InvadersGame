@@ -10,6 +10,7 @@ public class BulletController : MonoBehaviour {
         {
             case "Player":
                 Debug.Log("Le pegue al player");
+                other.gameObject.GetComponent<PlayerController>().TakeDamage();
                 Destroy(this.gameObject);
                 break;
             case "Enemy":
