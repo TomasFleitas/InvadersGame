@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //[RequireComponent(typeof(Rigidbody))]
 /*
@@ -9,7 +10,8 @@ using UnityEngine;
  * Si atachamos este script a un GameObject que no lo tenga nos dará un error y no nos dejará correr nuestro juego.
  */
 public class PlayerController : MonoBehaviour {
-
+    [SerializeField] private int maxLives;
+    [SerializeField] private int currentLives;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private GameObject bulletPrefab;
@@ -34,6 +36,8 @@ public class PlayerController : MonoBehaviour {
          */
 
         timeForNextShotAvaiable = 0f;
+
+        currentLives = maxLives;
     }
 
 
@@ -87,6 +91,20 @@ public class PlayerController : MonoBehaviour {
             * Time.deltaTime devuelve en tiempo aproximado que paso desde el ultimo frame, es una forma 
             * no tan costosa de llevar cuenta del tiempo.
             * Cuando timeForNextShotAvaiable es menor a 0 quiere decir que podemos volver a disparar.
+            */
+        }
+    }
+
+    public void TakeDamage()
+    {
+        currentLives--;
+        if(currentLives < 0)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+            /*
+            * Si nos golpean cuando ya no nos quedan vidas SceneManager busca la escena activa
+            * (en nuestro caso la escena de juego) y la recarga.
             */
         }
     }
